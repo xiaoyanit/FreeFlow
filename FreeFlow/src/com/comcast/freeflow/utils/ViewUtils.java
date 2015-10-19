@@ -17,6 +17,13 @@ package com.comcast.freeflow.utils;
 
 import java.util.Map;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Point;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.Display;
+
 import com.comcast.freeflow.core.FreeFlowItem;
 
 public class ViewUtils {
@@ -31,4 +38,17 @@ public class ViewUtils {
 	    }
 		return returnValue;
 	}
+	
+	public static Point getScreenSize(Activity activity){
+		Display display = activity.getWindowManager().getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		return size;
+	}
+	
+	public static float dipToPixels(Context context, float dipValue) {
+	    DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+	    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, metrics);
+	}
+	
 }

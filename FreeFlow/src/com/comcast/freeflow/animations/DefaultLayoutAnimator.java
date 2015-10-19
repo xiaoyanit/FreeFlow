@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.freeflow.BuildConfig;
+//import org.freeflow.BuildConfig;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
@@ -31,6 +31,7 @@ import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.graphics.Rect;
 import android.util.Log;
 import android.util.Pair;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.animation.DecelerateInterpolator;
@@ -315,9 +316,9 @@ public class DefaultLayoutAnimator implements FreeFlowLayoutAnimator {
 					// v.setAlpha((1 - alpha) * animation.getAnimatedFraction()
 					// + alpha);
 				} catch (NullPointerException e) {
-					if(BuildConfig.DEBUG){
-						Log.e(TAG, "Nullpointer exception");
-					}
+					// if(BuildConfig.DEBUG){
+					// 	Log.e(TAG, "Nullpointer exception");
+					// }
 					e.printStackTrace();
 					animation.cancel();
 				}
@@ -341,6 +342,11 @@ public class DefaultLayoutAnimator implements FreeFlowLayoutAnimator {
 	@Override
 	public boolean isRunning() {
 		return mIsRunning;
+	}
+
+	@Override
+	public void onContainerTouchDown(MotionEvent event) {
+		cancel();
 	}
 
 }
